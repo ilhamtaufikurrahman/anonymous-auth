@@ -1,5 +1,7 @@
-import 'package:authentication_anonymous/landing_page.dart';
+import 'package:authentication_anonymous/auth_services.dart';
+import 'package:authentication_anonymous/wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -13,8 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: LandingPage(),
+    return StreamProvider.value(
+      initialData: null,
+      value: AuthServices.userStream,
+      child: MaterialApp(
+        home: Wrapper(),
+      ),
     );
   }
 }
