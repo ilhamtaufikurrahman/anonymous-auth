@@ -1,4 +1,5 @@
 import 'package:authentication_anonymous/auth_services.dart';
+import 'package:authentication_anonymous/firestore_page.dart';
 import 'package:authentication_anonymous/firestore_services.dart';
 import 'package:authentication_anonymous/wrapper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,36 +23,7 @@ class MyApp extends StatelessWidget {
       value: AuthServices.userStream,
       child: MaterialApp(
         // home: Wrapper(),
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text('Firebase'),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () async {
-                      await FirestoreServices.createUpdateProduct(
-                          '1', 'timbangan digital', 50000);
-                    },
-                    child: Text('Create')),
-                ElevatedButton(
-                    onPressed: () async {
-                      DocumentSnapshot snapshot =
-                          await FirestoreServices.getData('1');
-                      print(snapshot.get('nama'));
-                    },
-                    child: Text('Get')),
-                ElevatedButton(
-                    onPressed: () async {
-                      await FirestoreServices.deleteData('1');
-                    },
-                    child: Text('Delete')),
-              ],
-            ),
-          ),
-        ),
+        home: FirestorePage(),
       ),
     );
   }
